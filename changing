@@ -1,0 +1,23 @@
+def copy_line(source_file, target_file, line_number):
+    try:
+        with open(source_file, 'r') as src:
+            lines = src.readlines()
+        
+        if 1 <= line_number <= len(lines):
+            with open(target_file, 'a') as tgt:
+                tgt.write(lines[line_number - 1])
+            print(f"Строка номер {line_number} успешно скопирована из {source_file} в {target_file}.")
+        else:
+            print(f"Ошибка: строка номер {line_number} не существует в файле {source_file}.")
+    
+    except FileNotFoundError:
+        print(f"Ошибка: файл {source_file} или {target_file} не найден.")
+    except Exception as e:
+        print(f"Произошла ошибка: {e}")
+
+if __name__ == "__main__":
+    source_file = input("Введите путь к исходному файлу: ")
+    target_file = input("Введите путь к целевому файлу: ")
+    line_number = int(input("Введите номер строки для копирования: "))
+
+    copy_line(source_file, target_file, line_number)
